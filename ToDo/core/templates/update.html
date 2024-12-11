@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'core/css/style.css' %}">
+    <img src="{% static 'core/images/logo.svg' %}" alt="Logo">
+</head>
+<body>
+    <main>
+        <section class="form-container">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">UPDATE</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>MADE BY Carlos Bernardo Gomez Garcia</p>
+        <p>Ing. de Software</p>
+        <p>UNIVERSIDAD AUTONOMA DE ZACATECAS</p>
+    </footer>
+</body>
+</html>

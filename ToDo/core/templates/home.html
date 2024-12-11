@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'core/css/style.css' %}">
+    <img src="{% static 'core/images/logo.svg' %}" alt="Logo">
+</head>
+<body>
+    <main>
+        <section class="data-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>TIPO</th>
+                        <th>NOMBRE</th>
+                        <th>FECHA DE ENTREGA</th>
+                        <th>DESCRIPCION</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--Proyecto-->
+                    {% for proyecto in proyectos %}
+                        <tr>
+                            <td>Proyecto</td>
+                            <td>{{ proyecto.nombre }}</td>
+                            <td>{{ proyecto.fecha_entrega }}</td>
+                            <td>{{ proyecto.descripcion }}</td>
+                            <td>
+                                <button onclick="window.location.href='{% url 'update_item' 'proyecto' proyecto.id %}'">UPDATE</button>
+                                <form method="POST" action="{% url 'delete' 'proyecto' proyecto.id %}" style="display:inline;">
+                                    {% csrf_token %}
+                                    <button type="submit">DELETE</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    <!--Tarea-->
+                    {% for tarea in tareas %}
+                        <tr>
+                            <td>Tarea</td>
+                            <td>{{ tarea.nombre }}</td>
+                            <td>{{ tarea.fecha_entrega }}</td>
+                            <td>{{ tarea.descripcion }}</td>
+                            <td>
+                                <button onclick="window.location.href='{% url 'update_item' 'tarea' tarea.id %}'">UPDATE</button>
+                                <form method="POST" action="{% url 'delete' 'tarea' tarea.id %}" style="display:inline;">
+                                    {% csrf_token %}
+                                    <button type="submit">DELETE</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="buttons">
+                <button onclick="window.location.href='{% url 'create' %}'">CREATE</button>
+            </div> 
+        </section>
+    </main>
+    <footer>
+        <p>MADE BY Carlos Bernardo Gomez Garcia</p>
+        <p>Ing. de Software</p>
+        <p>UNIVERSIDAD AUTONOMA DE ZACATECAS</p>
+    </footer>
+</body>
+</html>
